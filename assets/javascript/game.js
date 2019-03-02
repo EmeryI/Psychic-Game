@@ -14,17 +14,29 @@ var winsText = document.getElementById("wins-text");
 
 var lossesText = document.getElementById("losses-text");
 
-var tiesText = document.getElementById("yourguessessofar-text");
+var yourGuessesSoFarText = document.getElementById("yourguessessofar-text");
 
-var computerChoiceText = document.getElementById("guessesleft-text");
+var GuessesLeftText = document.getElementById("guessesleft-text");
+// the above are all references to the HTML ids
 
 document.onkeyup = function(event) {
+    // .onkeyup is the listeing event for when a key is hit
     console.log("onkeyup");
-    var yourGuessesSoFar = event.key;
+    var currentGuess = event.key;
+    yourGuessesSoFar.push(currentGuess)
+    console.log(currentGuess + "current guess")
+    console.log(yourGuessesSoFar)
+    console.log(" guesses so far")
 
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-    for (i = 0; i < 10; i++) {
-        console.log(i + 1);
+    // userguess appears in html
+    yourGuessesSoFarText.textContent = yourGuessesSoFar
+        // if computerguess and currentguess are eaqual wins go up
+    if (computerGuess === currentGuess) {
+        wins++;
+        winsText.textContent = wins
     }
+
+    // if computerguess and userguess are not eaqual then userguess will populate and numguess will decrease
 }
